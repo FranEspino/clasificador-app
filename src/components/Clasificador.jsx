@@ -11,7 +11,7 @@ const videoConstraints = {
 var modelo = null;
 
 const Clasificador = () => {
-    const [facingMode, setFacingMode] = React.useState(FACING_MODE_USER);
+    const [facingMode, setFacingMode] = React.useState(FACING_MODE_ENVIRONMENT);
   const webcamRef = useRef(null);
   const canvasRef = useRef(null);
   const otrocanvasRef = useRef(null);
@@ -193,6 +193,7 @@ const Clasificador = () => {
             facingMode
           }}
       />
+
       <h2 className=" text-4xl font-black text-center "> {prediction}</h2>
       <button onClick={()=>{setFacingMode(FACING_MODE_ENVIRONMENT)}}>Switch camera</button>
 
