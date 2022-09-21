@@ -1,9 +1,17 @@
 import React, { useEffect, useRef, useState} from "react";
 import Webcam from "react-webcam";
 import * as tf from "@tensorflow/tfjs";
+const FACING_MODE_USER = "user";
+const FACING_MODE_ENVIRONMENT = "environment";
+
+const videoConstraints = {
+  facingMode: FACING_MODE_USER
+};
+
 var modelo = null;
 
 const Clasificador = () => {
+    const [facingMode, setFacingMode] = React.useState(FACING_MODE_USER);
   const webcamRef = useRef(null);
   const canvasRef = useRef(null);
   const otrocanvasRef = useRef(null);
@@ -180,8 +188,13 @@ const Clasificador = () => {
           width: 640,
           height: 480,
         }}
+        videoConstraints={{
+            ...videoConstraints,
+            facingMode
+          }}
       />
       <h2 className=" text-4xl font-black text-center "> {prediction}</h2>
+      <button onClick={()=>{setFacingMode(FACING_MODE_ENVIRONMENT)}}>Switch camera</button>
 
       <canvas
         ref={canvasRef}
